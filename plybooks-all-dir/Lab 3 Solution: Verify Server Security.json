@@ -1,0 +1,624 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_3_to_port_5",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_4_to_port_6",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_6_to_port_8",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "8",
+                    "targetPort": "8_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_6_to_port_10",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "10",
+                    "targetPort": "10_in"
+                }
+            ],
+            "hash": "d7bea6169fb1a0c9f19c378744e1a4af5c0eafa2",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 560,
+                    "y": 119.99999999999994
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1120,
+                    "y": 1120
+                },
+                "10": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 4,
+                        "functionName": "add_comment_4",
+                        "id": "10",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "comment": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "comment",
+                                        "name": "comment",
+                                        "placeholder": "Enter a comment",
+                                        "renderType": "datapath",
+                                        "required": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add comment",
+                                "name": "comment"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "comment": {
+                                "_internal": [
+                                    "container",
+                                    "author",
+                                    "trace"
+                                ],
+                                "comment": "Server room found insecure"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "10",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 760,
+                    "y": 1060
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Check Server Security",
+                            "customNameId": 0,
+                            "drop_none": true,
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "user",
+                            "value": "launching_user"
+                        },
+                        "functionId": 1,
+                        "functionName": "check_server_security",
+                        "hasExternalApprover": true,
+                        "id": "2",
+                        "message": "A security incident has occured, please check physical security for the server.\nID of the server is {0}",
+                        "nestedNodeChildren": [
+                            "9"
+                        ],
+                        "parameters": [
+                            "artifact:*.cef.destinationAddress"
+                        ],
+                        "responseTime": 10,
+                        "responses": [
+                            {
+                                "required": true,
+                                "responseOptions": [
+                                    "Yes",
+                                    "No"
+                                ],
+                                "responsePrompt": "Dooor locked",
+                                "responseType": "yes/no"
+                            },
+                            {
+                                "required": true,
+                                "responseOptions": [],
+                                "responsePrompt": "Any issues found",
+                                "responseType": "message"
+                            }
+                        ],
+                        "samlEnabled": false,
+                        "samlGroupsAllowed": [],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 540,
+                    "y": 280
+                },
+                "3": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "check_server_security:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Completed",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Time Out",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "decision_1",
+                        "id": "3",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 620,
+                    "y": 604.5
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "add_comment_1",
+                        "id": "4",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "comment": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "comment",
+                                        "name": "comment",
+                                        "placeholder": "Enter a comment",
+                                        "renderType": "datapath",
+                                        "required": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add comment",
+                                "name": "comment"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "comment": {
+                                "_internal": [
+                                    "container",
+                                    "author",
+                                    "trace"
+                                ],
+                                "comment": "check_server_security:action_result.summary.responses.1"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 540,
+                    "y": 800
+                },
+                "5": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 2,
+                        "functionName": "add_comment_2",
+                        "id": "5",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "comment": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "comment",
+                                        "name": "comment",
+                                        "placeholder": "Enter a comment",
+                                        "renderType": "datapath",
+                                        "required": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add comment",
+                                "name": "comment"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "comment": {
+                                "_internal": [
+                                    "container",
+                                    "author",
+                                    "trace"
+                                ],
+                                "comment": "Server room security has not been verified within the required time limit"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 820,
+                    "y": 740
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "check_server_security:action_result.summary.responses.0",
+                                        "value": "yes"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Door secure",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Door insecure",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "decision_2",
+                        "id": "6",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 620,
+                    "y": 900
+                },
+                "8": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 3,
+                        "functionName": "add_comment_3",
+                        "id": "8",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "comment": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "comment",
+                                        "name": "comment",
+                                        "placeholder": "Enter a comment",
+                                        "renderType": "datapath",
+                                        "required": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add comment",
+                                "name": "comment"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "comment": {
+                                "_internal": [
+                                    "container",
+                                    "author",
+                                    "trace"
+                                ],
+                                "comment": "Door secure"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "8",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 1060
+                },
+                "9": {
+                    "data": {
+                        "action": "send email",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "SMTP",
+                        "connectorConfigs": [
+                            "smtp"
+                        ],
+                        "connectorId": "45bb6f37-4478-499b-b4a3-51ecfa62b78c",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "send_email_1",
+                        "id": "9",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "nestedNodeParent": "2",
+                        "parameters": {
+                            "body": {
+                                "functionId": 1,
+                                "parameters": [
+                                    "check_server_security:action_result.parameter.secure_link"
+                                ],
+                                "template": "Please respond to an urgent SOAR incident by clicking this link\n{0}\n"
+                            },
+                            "subject": "Urgent SOAR Incident",
+                            "to": ""
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "to"
+                            },
+                            {
+                                "data_type": "string",
+                                "field": "body"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "9",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                }
+            },
+            "notes": "",
+            "origin": {
+                "playbook_id": 154,
+                "playbook_name": "Lab 2 Soulution: Verify Server Security",
+                "playbook_repo_id": 2,
+                "playbook_repo_name": "local"
+            }
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.15",
+        "version": "6.3.1.178"
+    },
+    "create_time": "2024-12-17T17:24:22.812930+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

@@ -1,0 +1,351 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_3",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_5",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_5_to_port_6",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_6_to_port_7",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_7_to_port_9",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "9",
+                    "targetPort": "9_in"
+                }
+            ],
+            "hash": "2fc2fcbb4250b301f20b1335398df62bed64be9f",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 419.9999999999998
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 1920
+                },
+                "3": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "format_1",
+                        "id": "3",
+                        "parameters": [
+                            "artifact:*.cef.destination"
+                        ],
+                        "template": "find_peers server=\"{0}\"\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 600
+                },
+                "4": {
+                    "data": {
+                        "action": "run query",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "splunk_instructor"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "run_query_1",
+                        "id": "4",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "command": "savedsearch",
+                            "query": "format_1:formatted_data",
+                            "search_mode": "smart"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "query"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "search",
+                                "field": "command"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "smart",
+                                "field": "search_mode"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "warnings": {
+                        "config": [
+                            "Reconfigure invalid datapath."
+                        ]
+                    },
+                    "x": 980,
+                    "y": 780
+                },
+                "5": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "run_query_1:action_result.data.*.priority",
+                                        "value": "critical"
+                                    },
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "run_query_1:action_result.data.*.priority",
+                                        "value": "high"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "logic": "or"
+                            }
+                        ],
+                        "customDatapaths": {
+                            "run_query_1": {
+                                "action_result.data.*.priority": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "action_result.data.*.priority",
+                                    "value": "run_query_1:action_result.data.*.priority"
+                                }
+                            }
+                        },
+                        "functionId": 1,
+                        "functionName": "filter_1",
+                        "id": "5",
+                        "type": "filter"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "filter",
+                    "warnings": {},
+                    "x": 1040,
+                    "y": 960
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "customName": "format message",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "functionId": 2,
+                        "functionName": "format_message",
+                        "id": "6",
+                        "parameters": [
+                            "artifact:*.cef.destination",
+                            "run_query_1:action_result.summary.total_events"
+                        ],
+                        "template": "The {0} machine commuinicated with {1} total servers. Here is a list of the high or critical priority servers.\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 1224.5
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "customName": "format list",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "customDatapaths": {
+                            "run_query_1": {
+                                "action_result.data.*.peer": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "action_result.data.*.peer",
+                                    "value": "run_query_1:action_result.data.*.peer"
+                                },
+                                "action_result.data.*.priority": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "action_result.data.*.priority",
+                                    "value": "run_query_1:action_result.data.*.priority"
+                                }
+                            }
+                        },
+                        "functionId": 3,
+                        "functionName": "format_list",
+                        "id": "7",
+                        "parameters": [
+                            "run_query_1:action_result.data.*.peer",
+                            "run_query_1:action_result.data.*.priority",
+                            "run_query_1:action_result.data.*.count"
+                        ],
+                        "template": "%%\nserver: {0} with priority {1} was communicated {2} times\n%%",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 1380
+                },
+                "9": {
+                    "data": {
+                        "action": "update event",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "splunk_instructor"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "update_event_1",
+                        "id": "9",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "comment": {
+                                "parameters": [
+                                    "format_message:formatted_data",
+                                    "format_list:formatted_data"
+                                ],
+                                "template": "{0}\n{1}"
+                            },
+                            "event_ids": "artifact:*.cef.notableId",
+                            "status": "in progress"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "event_ids"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "9",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 1600
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.11",
+        "version": "6.2.0.355"
+    },
+    "create_time": "2024-04-04T16:41:09.528140+00:00",
+    "draft_mode": false,
+    "labels": [
+        "migrated_malware",
+        "malware"
+    ],
+    "tags": []
+}
