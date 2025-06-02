@@ -1,0 +1,170 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_3",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_2",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                }
+            ],
+            "hash": "275a33af4ab6fb683724d91fe52e4c01893cb58f",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 339.9999999999999
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                },
+                "2": {
+                    "data": {
+                        "action": "delete data",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "HTTP",
+                        "connectorConfigs": [
+                            "soar100"
+                        ],
+                        "connectorId": "290b7499-0374-4930-9cdc-5e9b05d65827",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "delete_data_1",
+                        "id": "2",
+                        "parameters": {
+                            "location": "format_1:formatted_data.*"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "location"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 740
+                },
+                "3": {
+                    "data": {
+                        "action": "get data",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "HTTP",
+                        "connectorConfigs": [
+                            "soar100"
+                        ],
+                        "connectorId": "290b7499-0374-4930-9cdc-5e9b05d65827",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "get_data_1",
+                        "id": "3",
+                        "parameters": {
+                            "location": "decided_list"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "location"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 990,
+                    "y": 464.5
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "format_1",
+                        "id": "4",
+                        "parameters": [
+                            "get_data_1:action_result.data.*.response_body.data.*.name"
+                        ],
+                        "template": "%%\ndecided_list/{0}\n%%",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 604.5
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.10",
+        "version": "6.0.1.123902"
+    },
+    "create_time": "2023-08-04T18:34:01.588543+00:00",
+    "draft_mode": false,
+    "labels": [
+        "mytimer"
+    ],
+    "tags": []
+}

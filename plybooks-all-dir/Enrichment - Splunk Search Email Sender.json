@@ -1,0 +1,777 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_6",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_43_to_port_44",
+                    "sourceNode": "43",
+                    "sourcePort": "43_out",
+                    "targetNode": "44",
+                    "targetPort": "44_in"
+                },
+                {
+                    "id": "port_44_to_port_46",
+                    "sourceNode": "44",
+                    "sourcePort": "44_out",
+                    "targetNode": "46",
+                    "targetPort": "46_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_46_to_port_45",
+                    "sourceNode": "46",
+                    "sourcePort": "46_out",
+                    "targetNode": "45",
+                    "targetPort": "45_in"
+                },
+                {
+                    "id": "port_6_to_port_43",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "43",
+                    "targetPort": "43_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_46_to_port_48",
+                    "sourceNode": "46",
+                    "sourcePort": "46_out",
+                    "targetNode": "48",
+                    "targetPort": "48_in"
+                },
+                {
+                    "id": "port_45_to_port_47",
+                    "sourceNode": "45",
+                    "sourcePort": "45_out",
+                    "targetNode": "47",
+                    "targetPort": "47_in"
+                },
+                {
+                    "id": "port_48_to_port_50",
+                    "sourceNode": "48",
+                    "sourcePort": "48_out",
+                    "targetNode": "50",
+                    "targetPort": "50_in"
+                },
+                {
+                    "id": "port_47_to_port_52",
+                    "sourceNode": "47",
+                    "sourcePort": "47_out",
+                    "targetNode": "52",
+                    "targetPort": "52_in"
+                },
+                {
+                    "id": "port_50_to_port_53",
+                    "sourceNode": "50",
+                    "sourcePort": "50_out",
+                    "targetNode": "53",
+                    "targetPort": "53_in"
+                },
+                {
+                    "id": "port_52_to_port_1",
+                    "sourceNode": "52",
+                    "sourcePort": "52_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                },
+                {
+                    "id": "port_53_to_port_1",
+                    "sourceNode": "53",
+                    "sourcePort": "53_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "hash": "ad7f83bf1c590bd4c85cca5a41b7fa05f901dd2e",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 190,
+                    "y": -1.2789769243681803e-13
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "userCode": "\t\n    # Error handling in case of playbook not being able to import data properly\n    \n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
+                    "warnings": {},
+                    "x": 190,
+                    "y": 1248
+                },
+                "43": {
+                    "data": {
+                        "advanced": {
+                            "customName": "format email sender query",
+                            "customNameId": 0,
+                            "drop_none": true,
+                            "join": []
+                        },
+                        "customDatapaths": {
+                            "artifacts": {
+                                "artifact:*.cef.sender": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "artifact:*.cef.sender",
+                                    "value": "artifact:*.cef.sender"
+                                }
+                            }
+                        },
+                        "functionId": 2,
+                        "functionName": "format_email_sender_query",
+                        "id": "43",
+                        "parameters": [
+                            "artifact:*.cef.senders"
+                        ],
+                        "template": "(index=msexchange sourcetype=\"MSExchange:*:MessageTracking\" sender=\"{0}\") OR\n(index=o365 sourcetype=ms:o365:reporting:messagetrace SenderAddress=\"{0}\") OR\n(index=mcafee sourcetype=mcafee:smtp Event=\"*Email Status*\" From=\"*{0}*\")\nearliest=-24h@h AND latest=now\n| rex field=_raw \"^[^\\<]+\\<(?<message_id_header>[^\\>]+)\\>\"\n| rex field=_raw \",\\s+to=(?<mcafee_rcpt>.*),\\s+virtual_host=\"\n| rex mode=sed field=mcafee_rcpt \"s/(\\<|\\>)//g\"\n| eval mcafee_rcpt=split(mcafee_rcpt, \", \")\n| eval mcafee_subj=if(match(sourcetype, \"mcafee:smtp\"), subject, null())\n| rex mode=sed field=mcafee_subj \"s/(^\\'|\\'$)//g\"\n| eval mcafee_sender=if(match(sourcetype, \"mcafee:smtp\"), From, null())\n| rex mode=sed field=mcafee_sender \"s/(^\\<|\\>$)//g\"\n| rex field=_raw \",\\s+attachment\\(s\\)=\\'(?<attachments>[^\\']+)\\'\"\n| eval attachments=split(attachments, \", \")\n| rex field=_raw \"number-attachment\\(s\\)=\\'(?<mcafee_num_attachments>[0-9]+)\\'\"\n| eval sender=lower(coalesce(SenderAddress, sender, mcafee_sender))\n| eval recipient=lower(coalesce(RecipientAddress, recipient, mcafee_rcpt))\n| eval subject=coalesce(mcafee_subj, Subject, subject)\n| eval event_id=upper(coalesce(Status, event_id, if(match(sourcetype, \"mcafee:smtp\"), \"RELAY\", null())))\n| eval num_attachments=coalesce(AttachCount, mcafee_num_attachments)\n| eval message_id=coalesce(MessageTraceId, message_id, msgid)\n| rename OriginalFromAddress AS envelope_from\n| eval indexSourcetype=index + \" [\" + sourcetype + \"]\"\n| search index=*\n| table _time host sender envelope_from recipient subject num_attachments attachments event_id indexSourcetype message_id message_id_header source_id inbox_autoforwarding | search \n| mvexpand recipient\n| search NOT recipient=*@parlaph.mail.onmicrosoft.com\n| eval event_id=coalesce(source_id.\":\".event_id, event_id)\n| fillnull value=\"\"\n| stats earliest(_time) as e, latest(_time) as l, values(event_id) as events, values(attachments) as attachments count by sender recipient subject message_id_header\n| sort e\n| eval firstevent=strftime(e, \"%d-%m-%y %H:%M:%S\"), lastevent=strftime(l, \"%d-%m-%y %H:%M:%S\"), events=mvjoin(events, \", \")\n| table firstevent, lastevent, sender, recipient, subject, attachments, events",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "43",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 170,
+                    "y": 311.9999999999998
+                },
+                "44": {
+                    "data": {
+                        "action": "run query",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "email query",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "splunkes"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "email_query",
+                        "id": "44",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "attach_result": true,
+                            "command": "search",
+                            "display": "",
+                            "parse_only": false,
+                            "query": "format_email_sender_query:formatted_data"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "",
+                                "default": "",
+                                "field": "query"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "44",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 170,
+                    "y": 476
+                },
+                "45": {
+                    "data": {
+                        "advanced": {
+                            "customName": "results found",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "customDatapaths": {
+                            "artifacts": {
+                                "artifact:*.cef.senders": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "artifact:*.cef.senders",
+                                    "value": "artifact:*.cef.senders"
+                                }
+                            }
+                        },
+                        "functionId": 4,
+                        "functionName": "results_found",
+                        "id": "45",
+                        "parameters": [
+                            "artifact:*.cef.senders"
+                        ],
+                        "template": "Results found for sender {0}\n\nLink to Dashboard\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "45",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 804
+                },
+                "46": {
+                    "data": {
+                        "advanced": {
+                            "delimiter": ",",
+                            "delimiter_enabled": true,
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": ">",
+                                        "param": "email_query:action_result.summary.total_events",
+                                        "value": "0"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Results",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "No Results",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "decision_1",
+                        "id": "46",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "46",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 250,
+                    "y": 624
+                },
+                "47": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "add_note_1",
+                        "id": "47",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "add_note": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "title",
+                                        "name": "title",
+                                        "placeholder": "Enter a note title",
+                                        "renderType": "input",
+                                        "required": false
+                                    },
+                                    {
+                                        "description": "",
+                                        "label": "content",
+                                        "name": "content",
+                                        "placeholder": "Enter the note content",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "choices": [
+                                            "markdown",
+                                            "html"
+                                        ],
+                                        "default": "markdown",
+                                        "description": "",
+                                        "label": "note format",
+                                        "name": "note_format",
+                                        "placeholder": "Enter the note content",
+                                        "renderType": "dropdown",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "default": "general",
+                                        "hidden": true,
+                                        "name": "note_type",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "event_id",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "task_id",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add note",
+                                "name": "add_note"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "add_note": {
+                                "_internal": [
+                                    "container",
+                                    "note_type",
+                                    "author",
+                                    "event_id",
+                                    "task_id",
+                                    "trace"
+                                ],
+                                "content": "results_found:formatted_data",
+                                "note_format": "markdown",
+                                "note_type": "general",
+                                "title": "Splunk search results"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "47",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 952
+                },
+                "48": {
+                    "data": {
+                        "advanced": {
+                            "customName": "no results",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "functionId": 6,
+                        "functionName": "no_results",
+                        "id": "48",
+                        "parameters": [
+                            "artifact:*.cef.senders"
+                        ],
+                        "template": "No results seen when searching for sender {0}",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "48",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 804
+                },
+                "50": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 6,
+                        "functionName": "add_note_6",
+                        "id": "50",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "add_note": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "title",
+                                        "name": "title",
+                                        "placeholder": "Enter a note title",
+                                        "renderType": "input",
+                                        "required": false
+                                    },
+                                    {
+                                        "description": "",
+                                        "label": "content",
+                                        "name": "content",
+                                        "placeholder": "Enter the note content",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "choices": [
+                                            "markdown",
+                                            "html"
+                                        ],
+                                        "default": "markdown",
+                                        "description": "",
+                                        "label": "note format",
+                                        "name": "note_format",
+                                        "placeholder": "Enter the note content",
+                                        "renderType": "dropdown",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "default": "general",
+                                        "hidden": true,
+                                        "name": "note_type",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "event_id",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "task_id",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add note",
+                                "name": "add_note"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "add_note": {
+                                "_internal": [
+                                    "container",
+                                    "note_type",
+                                    "author",
+                                    "event_id",
+                                    "task_id",
+                                    "trace"
+                                ],
+                                "content": "no_results:formatted_data",
+                                "note_format": "markdown",
+                                "note_type": "general",
+                                "title": "Splunk search results"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "50",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 952
+                },
+                "52": {
+                    "data": {
+                        "action": "update event",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "splunkes"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "customDatapaths": {
+                            "artifacts": {
+                                "artifact:*.cef.event_id": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "artifact:*.cef.event_id",
+                                    "value": "artifact:*.cef.event_id"
+                                }
+                            }
+                        },
+                        "functionId": 1,
+                        "functionName": "update_event_1",
+                        "id": "52",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "comment": "results_found:formatted_data",
+                            "event_ids": "artifact:*.cef.event_id",
+                            "wait_for_confirmation": true
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "event_ids"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "52",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 1100
+                },
+                "53": {
+                    "data": {
+                        "action": "update event",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "splunkes"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "customDatapaths": {
+                            "artifacts": {
+                                "artifact:*.cef.event_id": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "artifact:*.cef.event_id",
+                                    "value": "artifact:*.cef.event_id"
+                                }
+                            }
+                        },
+                        "functionId": 2,
+                        "functionName": "update_event_2",
+                        "id": "53",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "comment": "no_results:formatted_data",
+                            "event_ids": "artifact:*.cef.event_id",
+                            "wait_for_confirmation": true
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "event_ids"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "53",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 1100
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "customName": "get splunk asset details",
+                            "customNameId": 0,
+                            "join": [],
+                            "notRequiredJoins": [
+                                "add_workbook",
+                                "list_workbooks"
+                            ]
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "asset_get_attributes",
+                            "repoName": "community"
+                        },
+                        "functionId": 3,
+                        "functionName": "get_splunk_asset_details",
+                        "id": "6",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "asset_get_attributes": {
+                                "description": "Allows the retrieval of an attribute from an asset configuration for access in a playbook. This can be valuable in instances such as a dynamic note that references the Asset hostname. Must provide asset name or id.",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            ""
+                                        ],
+                                        "description": "Asset numeric ID or asset name.",
+                                        "inputType": "item",
+                                        "label": "asset",
+                                        "name": "asset",
+                                        "placeholder": "splunk_es",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "asset_get_attributes",
+                                "name": "asset_get_attributes"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "asset_get_attributes": {
+                                "asset": "splunk"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 170,
+                    "y": 147.99999999999994
+                }
+            },
+            "notes": "",
+            "origin": {
+                "playbook_id": 330,
+                "playbook_name": "Enrichment - Splunk Search Web Data_copy",
+                "playbook_repo_id": 15,
+                "playbook_repo_name": "Hyperion3"
+            }
+        },
+        "input_spec": null,
+        "output_spec": [
+            {
+                "contains": [],
+                "datapaths": [
+                    "[Auto-Generated] Notable Event Summary"
+                ],
+                "deduplicate": false,
+                "description": "",
+                "metadata": {},
+                "name": "note_title"
+            },
+            {
+                "contains": [],
+                "datapaths": [
+                    "format_note:formatted_data"
+                ],
+                "deduplicate": false,
+                "description": "",
+                "metadata": {},
+                "name": "note_content"
+            }
+        ],
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.11",
+        "version": "6.2.0.355"
+    },
+    "create_time": "2024-04-01T04:46:11.489551+00:00",
+    "draft_mode": true,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

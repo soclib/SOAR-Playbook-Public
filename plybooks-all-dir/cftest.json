@@ -1,0 +1,177 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_0_to_port_3",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                }
+            ],
+            "hash": "ad662f6d85df2789146df39ae7910e58c31fe66d",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 380
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                },
+                "3": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "cf_2025_mar_passthrough_demo",
+                            "repoName": "chris"
+                        },
+                        "functionId": 1,
+                        "functionName": "cf_2025_mar_passthrough_demo_1",
+                        "id": "3",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "cf_2025_mar_passthrough_demo": {
+                                "description": "this is a demo",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            "ip"
+                                        ],
+                                        "description": "Provide one or more Ip(s)",
+                                        "inputType": "list",
+                                        "label": "someIp",
+                                        "name": "someIp",
+                                        "placeholder": "111.22.33.44",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "someString",
+                                        "name": "someString",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "cf_2025_mar_passthrough_demo",
+                                "name": "cf_2025_mar_passthrough_demo"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "cf_2025_mar_passthrough_demo": {
+                                "someIp": [
+                                    "artifact:*.cef.destination"
+                                ],
+                                "someString": [
+                                    "container:name"
+                                ]
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 640
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "user",
+                            "value": "soardev"
+                        },
+                        "functionId": 1,
+                        "functionName": "prompt_1",
+                        "id": "4",
+                        "message": "{0}\n{1}\n",
+                        "parameters": [
+                            "cf_2025_mar_passthrough_demo_1:custom_function_result.data.outputIp",
+                            "cf_2025_mar_passthrough_demo_1:custom_function_result.data.outputString"
+                        ],
+                        "responseTime": 30,
+                        "responses": [],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 1060,
+                    "y": 740
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.12",
+        "version": "6.2.2.123"
+    },
+    "create_time": "2025-05-14T17:45:09.640914+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

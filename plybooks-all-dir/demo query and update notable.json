@@ -1,0 +1,301 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_3_to_port_5",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_5_to_port_6",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_6_to_port_7",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                }
+            ],
+            "hash": "ff0ce8fc8554f011239add842f8bf29090e6a643",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "x": 1000,
+                    "y": 419.9999999999998
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
+                    "x": 1000,
+                    "y": 1200
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "format_1",
+                        "id": "2",
+                        "parameters": [
+                            "artifact:*.cef.destination"
+                        ],
+                        "template": "find_peers server={0}\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "format",
+                    "x": 980,
+                    "y": 584.5
+                },
+                "3": {
+                    "data": {
+                        "action": "run query",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "es100"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "run_query_1",
+                        "id": "3",
+                        "parameters": {
+                            "command": "savedsearch",
+                            "query": "format_1:formatted_data"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "query"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "search",
+                                "field": "command"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "action",
+                    "x": 960,
+                    "y": 784.5
+                },
+                "5": {
+                    "data": {
+                        "action": "update event",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "es100"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "update_event_1",
+                        "id": "5",
+                        "parameters": {
+                            "comment": "chris wuz here",
+                            "event_ids": "artifact:*.cef.notableID",
+                            "status": "in progress",
+                            "urgency": "critical"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "event_ids"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "action",
+                    "x": 960,
+                    "y": 1040
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "L5_MM_03_save_peer_list",
+                            "repoName": "chris"
+                        },
+                        "functionId": 1,
+                        "functionName": "L5_MM_03_save_peer_list_1",
+                        "id": "6",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "L5_MM_03_save_peer_list": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "dataTypes": [],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "peer",
+                                        "name": "peer",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "priority",
+                                        "name": "priority",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "count",
+                                        "name": "count",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "phantom container id"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "container_id",
+                                        "name": "container_id",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "L5_MM_03_save_peer_list",
+                                "name": "L5_MM_03_save_peer_list"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "L5_MM_03_save_peer_list": {
+                                "container_id": "container:id",
+                                "count": "run_query_1:action_result.data.*.count",
+                                "peer": "run_query_1:action_result.data.*.peer",
+                                "priority": "run_query_1:action_result.data.*.priority"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "utility",
+                    "x": 1320,
+                    "y": 1064.5
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "playbook_create_containers_from_filtered_peer_list_1",
+                        "id": "7",
+                        "inputs": {
+                            "list_name": {
+                                "datapaths": [
+                                    "l5_mm_03_save_peer_list_1:custom_function_result.data.result_list_name"
+                                ],
+                                "deduplicate": false
+                            }
+                        },
+                        "playbookName": "create containers from filtered peer list",
+                        "playbookRepo": 3,
+                        "playbookRepoName": "chris",
+                        "playbookType": "data",
+                        "synchronous": false,
+                        "type": "playbook"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "playbook",
+                    "x": 1320,
+                    "y": 1224.5
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.6",
+        "version": "5.3.0.84310"
+    },
+    "create_time": "2022-09-30T20:28:37.216626+00:00",
+    "draft_mode": false,
+    "labels": [
+        "malware"
+    ],
+    "tags": []
+}

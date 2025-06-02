@@ -1,0 +1,406 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_3",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_3_to_port_5",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_3_to_port_7",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_7_to_port_4",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                }
+            ],
+            "hash": "ad341ec3201b92b40a4c5066a1634e1ddf1845e3",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "x": 1000,
+                    "y": 419.99999999999955
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
+                    "x": 1000,
+                    "y": 1160
+                },
+                "3": {
+                    "customCode": null,
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "L5_CF_Retrieve_List_SOAR53",
+                            "repoName": "PAI"
+                        },
+                        "functionId": 2,
+                        "functionName": "L5_CF_Retrieve_List_SOAR53_2",
+                        "id": "3",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "L5_CF_Retrieve_List_SOAR53": {
+                                "description": "This CF retrieves the contents of a list",
+                                "fields": [
+                                    {
+                                        "dataTypes": [],
+                                        "description": "",
+                                        "inputType": "item",
+                                        "label": "listName",
+                                        "name": "listName",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "L5_CF_Retrieve_List_SOAR53",
+                                "name": "L5_CF_Retrieve_List_SOAR53"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "L5_CF_Retrieve_List_SOAR53": {
+                                "listName": "playbook_input:list_name"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "utility",
+                    "userCode": null,
+                    "x": 980,
+                    "y": 544.5
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "L5_CF_Create_Containers_From_List_py3_SOAR53",
+                            "repoName": "PAI"
+                        },
+                        "functionId": 3,
+                        "functionName": "L5_CF_Create_Containers_From_List_py3_SOAR53_3",
+                        "id": "4",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "L5_CF_Create_Containers_From_List_py3_SOAR53": {
+                                "description": "    From a list of lists, create a set of Phantom containers and add in the appropriate artifacts\n    \n    Args:\n        to_be_containerized: List of Lists for things to be containerized.\n        container_label: This will be the label applied to the container\n    \n    Returns a JSON-serializable object that implements the configured data paths:\n        new_container_ids: List of container id's that have been created by this Custom Function.",
+                                "fields": [
+                                    {
+                                        "dataTypes": [],
+                                        "description": "",
+                                        "inputType": "item",
+                                        "label": "container_label",
+                                        "name": "container_label",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            ""
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "to_be_containerized",
+                                        "name": "to_be_containerized",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "L5_CF_Create_Containers_From_List_py3_SOAR53",
+                                "name": "L5_CF_Create_Containers_From_List_py3_SOAR53"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "L5_CF_Create_Containers_From_List_py3_SOAR53": {
+                                "container_label": "possiblemalware",
+                                "to_be_containerized": "filtered-data:filter_2:condition_1:l5_cf_retrieve_list_soar53_2:custom_function_result.data.listContents"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "utility",
+                    "x": 980,
+                    "y": 1020
+                },
+                "5": {
+                    "customCode": null,
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "debug",
+                            "repoName": "community"
+                        },
+                        "functionId": 4,
+                        "functionName": "debug_4",
+                        "id": "5",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "debug": {
+                                "description": "Print debug messages with the type and value of 0-10 different inputs. This is useful for checking the values of input data or the outputs of other playbook blocks.",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_1",
+                                        "name": "input_1",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_2",
+                                        "name": "input_2",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_3",
+                                        "name": "input_3",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_4",
+                                        "name": "input_4",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_5",
+                                        "name": "input_5",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_6",
+                                        "name": "input_6",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_7",
+                                        "name": "input_7",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_8",
+                                        "name": "input_8",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_9",
+                                        "name": "input_9",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "",
+                                        "inputType": "list",
+                                        "label": "input_10",
+                                        "name": "input_10",
+                                        "placeholder": "",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "debug",
+                                "name": "debug"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "debug": {
+                                "input_1": "l5_cf_retrieve_list_soar53_2:custom_function_result.data.listContents",
+                                "input_10": null,
+                                "input_2": "l5_cf_retrieve_list_soar53_2:custom_function_result.data.*.priority",
+                                "input_3": "l5_cf_retrieve_list_soar53_2:custom_function_result.data.listContents.*.priority",
+                                "input_4": "l5_cf_retrieve_list_soar53_2:custom_function_result.data.listContents.*",
+                                "input_5": "l5_cf_retrieve_list_soar53_2:custom_function_result.data.listContents[0]",
+                                "input_6": null,
+                                "input_7": null,
+                                "input_8": null,
+                                "input_9": null
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "utility",
+                    "userCode": null,
+                    "x": 1460,
+                    "y": 720
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "in",
+                                        "param": "high",
+                                        "value": "l5_cf_retrieve_list_soar53_2:custom_function_result.data.listContents.priority"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "logic": "or"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "filter_2",
+                        "id": "7",
+                        "type": "filter"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "filter",
+                    "x": 1040,
+                    "y": 740
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": [
+            {
+                "contains": [],
+                "description": "",
+                "name": "list_name"
+            }
+        ],
+        "output_spec": null,
+        "playbook_type": "data",
+        "python_version": "3",
+        "schema": "5.0.6",
+        "version": "5.3.0.84310"
+    },
+    "create_time": "2022-04-28T23:07:27.941343+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

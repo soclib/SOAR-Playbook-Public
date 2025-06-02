@@ -1,0 +1,503 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_11_to_port_12",
+                    "sourceNode": "11",
+                    "sourcePort": "11_out",
+                    "targetNode": "12",
+                    "targetPort": "12_in"
+                },
+                {
+                    "id": "port_12_to_port_1",
+                    "sourceNode": "12",
+                    "sourcePort": "12_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                },
+                {
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_13",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "13",
+                    "targetPort": "13_in"
+                },
+                {
+                    "id": "port_9_to_port_11",
+                    "sourceNode": "9",
+                    "sourcePort": "9_out",
+                    "targetNode": "11",
+                    "targetPort": "11_in"
+                },
+                {
+                    "id": "port_13_to_port_9",
+                    "sourceNode": "13",
+                    "sourcePort": "13_out",
+                    "targetNode": "9",
+                    "targetPort": "9_in"
+                }
+            ],
+            "hash": "0e79ac8d453704419f459a02e295b13f8c75c94e",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 20,
+                    "y": 0
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 20,
+                    "y": 1214
+                },
+                "11": {
+                    "data": {
+                        "action": "update event",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Splunk",
+                        "connectorConfigs": [
+                            "splunkes"
+                        ],
+                        "connectorId": "91883aa8-9c81-470b-97a1-5d8f7995f560",
+                        "connectorVersion": "v1",
+                        "functionId": 2,
+                        "functionName": "update_event_2",
+                        "id": "11",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "comment": "format_report_url:formatted_data",
+                            "event_ids": "artifact:*.cef.event_id"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "event_ids"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "11",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 918
+                },
+                "12": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "add_note_1",
+                        "id": "12",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "add_note": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "description": "",
+                                        "label": "title",
+                                        "name": "title",
+                                        "placeholder": "Enter a note title",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "description": "",
+                                        "label": "content",
+                                        "name": "content",
+                                        "placeholder": "Enter the note content",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "choices": [
+                                            "markdown",
+                                            "html"
+                                        ],
+                                        "default": "markdown",
+                                        "description": "",
+                                        "label": "note format",
+                                        "name": "note_format",
+                                        "placeholder": "Enter the note content",
+                                        "renderType": "dropdown",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "default": "general",
+                                        "hidden": true,
+                                        "name": "note_type",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "author",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "event_id",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "task_id",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add note",
+                                "name": "add_note"
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "add_note": {
+                                "_internal": [
+                                    "container",
+                                    "note_type",
+                                    "author",
+                                    "event_id",
+                                    "task_id",
+                                    "trace"
+                                ],
+                                "content": "format_report_url:formatted_data",
+                                "note_format": "markdown",
+                                "note_type": "general",
+                                "title": "Virus Total Scan results"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "12",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 1066
+                },
+                "13": {
+                    "data": {
+                        "action": "detonate url",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "ANY.RUN",
+                        "connectorConfigs": [
+                            "anyrun"
+                        ],
+                        "connectorId": "22a6a703-24dd-41eb-9736-1d6067e56abf",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "detonate_url_1",
+                        "id": "13",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "env_locale": "en-US",
+                            "obj_ext_browser": "Google Chrome",
+                            "obj_ext_extension": true,
+                            "obj_ext_startfolder": "temp",
+                            "obj_type": "url",
+                            "obj_url": "fanged_urls:formatted_data.*",
+                            "opt_automated_interactivity": true,
+                            "opt_network_connect": true,
+                            "opt_network_geo": "fastest",
+                            "opt_network_residential_proxy_geo": "fastest",
+                            "opt_privacy_type": "bylink",
+                            "opt_timeout": "60",
+                            "os": "Windows10x64_complete"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "default": "Windows10x64_complete",
+                                "field": "os"
+                            },
+                            {
+                                "data_type": "string",
+                                "field": "obj_url"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "url",
+                                "field": "obj_type"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "en-US",
+                                "field": "env_locale"
+                            },
+                            {
+                                "data_type": "numeric",
+                                "default": "60",
+                                "field": "opt_timeout"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "Google Chrome",
+                                "field": "obj_ext_browser"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "fastest",
+                                "field": "opt_network_geo"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "bylink",
+                                "field": "opt_privacy_type"
+                            },
+                            {
+                                "data_type": "boolean",
+                                "default": true,
+                                "field": "obj_ext_extension"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "temp",
+                                "field": "obj_ext_startfolder"
+                            },
+                            {
+                                "data_type": "boolean",
+                                "default": true,
+                                "field": "opt_network_connect"
+                            },
+                            {
+                                "data_type": "boolean",
+                                "default": true,
+                                "field": "opt_automated_interactivity"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "fastest",
+                                "field": "opt_network_residential_proxy_geo"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "13",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 592
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "customName": "List URLs as array",
+                            "customNameId": 0,
+                            "drop_none": true,
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "list_urls_as_array",
+                        "id": "2",
+                        "parameters": [
+                            "artifact:*.cef.requestURL"
+                        ],
+                        "template": "%%\n{0}\n%%\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 148
+                },
+                "3": {
+                    "customCode": null,
+                    "data": {
+                        "advanced": {
+                            "customName": "Refang URL",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "refang_url",
+                        "id": "3",
+                        "inputParameters": [
+                            "list_urls_as_array:formatted_data.*"
+                        ],
+                        "outputVariables": [
+                            "refanged_url"
+                        ],
+                        "type": "code"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "code",
+                    "userCode": "    def refang(defanged_urls):\n        refanged_urls = []\n        \n   # interate over the list of urls\n        for url in defanged_urls:\n            if url == None or len(url) == 0:\n                # skip empty urls\n                continue\n                \n            phantom.debug(\"Before refang: {}\".format(url))\n            \n            url = url.replace(\"hxxp\", \"http\")\n            url = url.replace(\"[.]\", \".\")\n            url = url.replace(\"[at]\", \"@\")\n            url = url.replace(\"\\\\\", \"\")\n\n            phantom.debug(\"After refang: {}\".format(url))\n            \n            refanged_urls.append(url)\n            \n        return refanged_urls\n            \n\n    phantom.debug(list_urls_as_array__as_list)\n    refang_url__refanged_url = refang(list_urls_as_array__as_list)\n\n",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 296
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "customName": "fanged URLs",
+                            "customNameId": 0,
+                            "drop_none": true,
+                            "join": []
+                        },
+                        "functionId": 2,
+                        "functionName": "fanged_urls",
+                        "id": "4",
+                        "parameters": [
+                            "refang_url:custom_function:refanged_urls"
+                        ],
+                        "template": "%%\n{0}\n%%",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 444
+                },
+                "9": {
+                    "data": {
+                        "advanced": {
+                            "customName": "format report url",
+                            "customNameId": 0,
+                            "description": "Format a summary table with the information gathered from the playbook.",
+                            "drop_none": true,
+                            "join": [],
+                            "note": "Format a summary table with the information gathered from the playbook."
+                        },
+                        "functionId": 3,
+                        "functionName": "format_report_url",
+                        "id": "9",
+                        "parameters": [
+                            "filtered-data:url_result_filter:condition_1:url_reputation:action_result.parameter.url",
+                            "normalize_score_url:custom_function:score",
+                            "normalize_score_url:custom_function:categories",
+                            "filtered-data:url_result_filter:condition_1:url_reputation:action_result.data.*.id"
+                        ],
+                        "template": "SOAR detonated URL(s) using AnyRun.  The table below shows a summary of the information gathered.\n\n| URL | Normalized Score | Categories | Report Link | Source |\n| --- | --- | --- | --- | --- |\n%%\n| `{0}` |  | {2} | https://www.virustotal.com/gui/url/{3} | VirusTotal v3 |\n%%\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "9",
+                    "type": "format",
+                    "warnings": {
+                        "config": [
+                            "Reconfigure invalid datapath."
+                        ]
+                    },
+                    "x": 0,
+                    "y": 740
+                }
+            },
+            "notes": "",
+            "origin": {
+                "playbook_id": 402,
+                "playbook_name": "Enrichment - VirusTotalV3 URL Detonate",
+                "playbook_repo_id": 15,
+                "playbook_repo_name": "Hyperion3"
+            }
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.11",
+        "version": "6.2.0.355"
+    },
+    "create_time": "2024-12-12T04:01:06.624495+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

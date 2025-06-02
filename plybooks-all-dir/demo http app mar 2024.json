@@ -1,0 +1,267 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_0_to_port_4",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_2",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_3_to_port_5",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_5_to_port_6",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                }
+            ],
+            "hash": "12840d990540838503804461b5486f0ec2f27b54",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 419.99999999999875
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1020,
+                    "y": 1260
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "format_1",
+                        "id": "2",
+                        "parameters": [
+                            "prompt_1:action_result.summary.responses.0"
+                        ],
+                        "template": "cef?_filter_type=\"{0}\"&page_size=200\n",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 660
+                },
+                "3": {
+                    "data": {
+                        "action": "get data",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "HTTP",
+                        "connectorConfigs": [
+                            "instructors soar"
+                        ],
+                        "connectorId": "290b7499-0374-4930-9cdc-5e9b05d65827",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "get_data_1",
+                        "id": "3",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "location": "format_1:formatted_data"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "location"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 840
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "role",
+                            "value": "Administrator"
+                        },
+                        "functionId": 1,
+                        "functionName": "prompt_1",
+                        "id": "4",
+                        "message": "Hi.",
+                        "parameters": [],
+                        "responseTime": 30,
+                        "responses": [
+                            {
+                                "responseOptions": [
+                                    "custom",
+                                    "default"
+                                ],
+                                "responsePrompt": "What type of CEF fields would you like to see",
+                                "responseType": "customList"
+                            }
+                        ],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 1060,
+                    "y": 520
+                },
+                "5": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customDatapaths": {
+                            "get_data_1": {
+                                "action_result.data.*.parsed_response_body.data": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "isDatapathArray": true,
+                                    "label": "action_result.data.*.parsed_response_body.data",
+                                    "value": "get_data_1:action_result.data.*.parsed_response_body.data"
+                                },
+                                "action_result.data.*.parsed_response_body.data.*.data_type": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "isDatapathArray": true,
+                                    "label": "action_result.data.*.parsed_response_body.data.*.data_type",
+                                    "value": "get_data_1:action_result.data.*.parsed_response_body.data.*.data_type"
+                                },
+                                "action_result.data.*.parsed_response_body.data.*.name": {
+                                    "contains": [],
+                                    "isCustomDatapath": true,
+                                    "label": "action_result.data.*.parsed_response_body.data.*.name",
+                                    "value": "get_data_1:action_result.data.*.parsed_response_body.data.*.name"
+                                }
+                            }
+                        },
+                        "functionId": 2,
+                        "functionName": "format_2",
+                        "id": "5",
+                        "parameters": [
+                            "get_data_1:action_result.data.*.parsed_response_body.data.*.name",
+                            "get_data_1:action_result.data.*.parsed_response_body.data.*.data_type"
+                        ],
+                        "template": "%%\n CEF field name: {0} of type: {1}\n%%",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 980
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "role",
+                            "value": "Administrator"
+                        },
+                        "functionId": 2,
+                        "functionName": "prompt_2",
+                        "id": "6",
+                        "message": "{0}",
+                        "parameters": [
+                            "format_2:formatted_data"
+                        ],
+                        "responseTime": 30,
+                        "responses": [],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 1060,
+                    "y": 1144.5
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.12",
+        "version": "6.2.2.123"
+    },
+    "create_time": "2025-05-14T19:21:14.445441+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}
