@@ -1,0 +1,38 @@
+{
+    "create_time": "2022-03-31T09:37:30.201678+00:00",
+    "custom_function_id": "310e89a227c85a6e4b0483210e5011ea7e867d1a",
+    "description": "",
+    "draft_mode": false,
+    "inputs": [
+        {
+            "contains_type": [],
+            "description": "",
+            "input_type": "item",
+            "name": "email_subject",
+            "placeholder": ""
+        },
+        {
+            "contains_type": [],
+            "description": "",
+            "input_type": "item",
+            "name": "email_body",
+            "placeholder": ""
+        },
+        {
+            "contains_type": [],
+            "description": "",
+            "input_type": "item",
+            "name": "source_identifier_prefix",
+            "placeholder": ""
+        }
+    ],
+    "outputs": [
+        {
+            "contains_type": [],
+            "data_path": "source_identifier",
+            "description": ""
+        }
+    ],
+    "platform_version": "5.2.1.78411",
+    "python_version": "3"
+}
