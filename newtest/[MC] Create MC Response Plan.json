@@ -1,0 +1,641 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "The purpose of this playbook is to transfer custom SOAR workbooks over to MC as response plans.",
+            "edges": [
+                {
+                    "id": "port_7_to_port_8",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "8",
+                    "targetPort": "8_in"
+                },
+                {
+                    "id": "port_9_to_port_10",
+                    "sourceNode": "9",
+                    "sourcePort": "9_out",
+                    "targetNode": "10",
+                    "targetPort": "10_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_10_to_port_13",
+                    "sourceNode": "10",
+                    "sourcePort": "10_out",
+                    "targetNode": "13",
+                    "targetPort": "13_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_8_to_port_9",
+                    "sourceNode": "8",
+                    "sourcePort": "8_out",
+                    "targetNode": "9",
+                    "targetPort": "9_in"
+                },
+                {
+                    "id": "port_0_to_port_6",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_6_to_port_7",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_4_to_port_14",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "14",
+                    "targetPort": "14_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_14_to_port_1",
+                    "sourceNode": "14",
+                    "sourcePort": "14_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_8_to_port_15",
+                    "sourceNode": "8",
+                    "sourcePort": "8_out",
+                    "targetNode": "15",
+                    "targetPort": "15_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_10_to_port_15",
+                    "sourceNode": "10",
+                    "sourcePort": "10_out",
+                    "targetNode": "15",
+                    "targetPort": "15_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_14_to_port_15",
+                    "sourceNode": "14",
+                    "sourcePort": "14_out",
+                    "targetNode": "15",
+                    "targetPort": "15_in"
+                },
+                {
+                    "id": "port_13_to_port_4",
+                    "sourceNode": "13",
+                    "sourcePort": "13_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                }
+            ],
+            "hash": "6363c8824188ab807546887d58f6e234a0855f11",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 170,
+                    "y": -3.907985046680551e-14
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 360,
+                    "y": 1602
+                },
+                "10": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Decision 2",
+                            "customNameId": 0,
+                            "delimiter": ",",
+                            "delimiter_enabled": true,
+                            "description": "Check to see if request is successful.",
+                            "join": [],
+                            "note": "Check to see if request is successful."
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "retrieve_workbook_phases:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Success",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Failed",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "decision_2",
+                        "id": "10",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "10",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 320,
+                    "y": 890
+                },
+                "13": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Parse Workbook Phases",
+                            "customNameId": 0,
+                            "description": "Parse out phase name, description, and if a note is required. Does not currently parse out SLAs, playbooks, or actions. Sample request will be available in the repo with all available fields that can be added.",
+                            "join": [],
+                            "note": "Parse out phase name, description, and if a note is required. Does not currently parse out SLAs, playbooks, or actions. Sample request will be available in the repo with all available fields that can be added."
+                        },
+                        "functionId": 3,
+                        "functionName": "parse_workbook_phases",
+                        "id": "13",
+                        "inputParameters": [
+                            "retrieve_workbook_phases:action_result.data.*.parsed_response_body",
+                            "retrieve_workbook_details:action_result.data.*.parsed_response_body.name",
+                            "retrieve_workbook_details:action_result.data.*.parsed_response_body.description"
+                        ],
+                        "outputVariables": [
+                            "json_body"
+                        ],
+                        "type": "code"
+                    },
+                    "errors": {},
+                    "id": "13",
+                    "type": "code",
+                    "userCode": "\n    # Write your custom code here...\n    \n    # Create list to save each phase of a workbook\n    phases = []\n    \n    # Iterate each phase in the workbook\n    for phase in retrieve_workbook_phases_result_data[0][0][\"data\"]:\n                        \n        # Parse the workbook details\n        phase_name = phase[\"name\"]\n        phase_order = phase[\"order\"]\n        phase_tasks = phase[\"tasks\"]\n        \n        # Create list to save each task\n        tasks = []\n        \n        # Iterate each task in a phase\n        for task in phase_tasks:\n            \n            # Parse the task details\n            task_name = task[\"name\"]\n            task_order = task[\"order\"]\n            task_description = task[\"description\"]\n            task_is_note_required = task[\"is_note_required\"]\n            \n            if not task_description:\n                task_description = \"N/A\"                        \n            elif task_description == \"\":\n                task_description = \"N/A\"\n            elif task_description == \"null\":\n                task_description = \"N/A\"\n            # Remove double quotes and returns\n            #task_description = task_description.replace('\"',\"'\")            \n            task_description = task_description.replace('\"', '')\n            task_description = task_description.replace('\\'', '')\n            task_description = task_description.replace('\\n', '')\n            task_description = task_description.replace('\\r', '')\n            \n            # Save to task list\n            tasks.append({\"name\":task_name,\"order\":task_order,\"description\":task_description,\"is_note_required\":task_is_note_required,\"owner\":\"\",\"suggestions\":{\"actions\":[],\"searches\":[]},\"start_time\":0,\"end_time\":0,\"total_time_taken\":0})\n        \n        # Save to phase list\n        phases.append({\"name\":phase_name,\"order\":phase_order,\"tasks\":tasks})\n        \n    workbook_name = retrieve_workbook_details_result_item_0[0]\n    workbook_description = retrieve_workbook_details_result_item_1[0]    \n    \n    if not workbook_description:\n        workbook_description = workbook_name\n    elif workbook_description == \"\":\n        workbook_description = workbook_name\n    elif workbook_description == \"null\":\n        workbook_description = workbook_name\n    \n    workbook_description = workbook_description.replace('\"', '')\n    workbook_description = workbook_description.replace('\\'', '')\n    workbook_description = workbook_description.replace('\\n', '')\n    workbook_description = workbook_description.replace('\\r', '')\n    \n    # Create JSON body    \n    #parse_workbook_phases__json_body = {\"version\":1,\"is_default\":False,\"creator\":\"hatalla\",\"update_by\":\"hatalla\",\"name\":retrieve_workbook_details_result_item_0[0],\"description\":retrieve_workbook_details_result_item_1[0],\"template_status\":\"published\",\"phases\":phases}\n    parse_workbook_phases__json_body = {\"version\":1,\"is_default\":False,\"creator\":\"hatalla\",\"update_by\":\"hatalla\",\"name\":workbook_name,\"description\":workbook_description,\"template_status\":\"published\",\"phases\":phases}\n    \n    convert_json = json.dumps(parse_workbook_phases__json_body)\n    phantom.debug(convert_json)\n    \n    parse_workbook_phases__json_body = convert_json\n\n",
+                    "warnings": {},
+                    "x": 330,
+                    "y": 1070
+                },
+                "14": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Decision 3",
+                            "customNameId": 0,
+                            "delimiter": ",",
+                            "delimiter_enabled": true,
+                            "description": "Check to see if request is successful.",
+                            "join": [],
+                            "note": "Check to see if request is successful."
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "create_response_template:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Success",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Failed",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 3,
+                        "functionName": "decision_3",
+                        "id": "14",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "14",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 410,
+                    "y": 1422
+                },
+                "15": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Add Error Tag",
+                            "customNameId": 0,
+                            "join": [],
+                            "notRequiredJoins": [
+                                "retrieve_workbook_details",
+                                "retrieve_workbook_phases",
+                                "create_response_template"
+                            ],
+                            "refreshNotableData": true
+                        },
+                        "functionId": 1,
+                        "functionName": "add_error_tag",
+                        "id": "15",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "add_tags": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "choices": "tags",
+                                        "description": "",
+                                        "label": "tag",
+                                        "name": "tags",
+                                        "placeholder": "Enter a tag",
+                                        "renderType": "combobox",
+                                        "required": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "add tag",
+                                "name": "add_tags",
+                                "refreshNotableData": true
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "add_tags": {
+                                "_internal": [
+                                    "container",
+                                    "trace"
+                                ],
+                                "tags": "error"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "15",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 1602
+                },
+                "4": {
+                    "data": {
+                        "action": "post data",
+                        "actionType": "generic",
+                        "advanced": {
+                            "customName": "Create Response Template",
+                            "customNameId": 0,
+                            "description": "POST request to create MC response plan.",
+                            "join": [],
+                            "note": "POST request to create MC response plan."
+                        },
+                        "connector": "HTTP",
+                        "connectorConfigs": [
+                            "agile-albatross-b6u.stg.splunkcloud.com"
+                        ],
+                        "connectorId": "290b7499-0374-4930-9cdc-5e9b05d65827",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "create_response_template",
+                        "id": "4",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "body": "parse_workbook_phases:custom_function:json_body",
+                            "location": "servicesNS/-/missioncontrol/v1/responsetemplates"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "location"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 330,
+                    "y": 1246
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Workbook Prompt",
+                            "customNameId": 0,
+                            "description": "Enter workbook ID to copy into MC.",
+                            "join": [],
+                            "note": "Enter workbook ID to copy into MC."
+                        },
+                        "approver": {
+                            "type": "user",
+                            "value": "launching_user"
+                        },
+                        "functionId": 1,
+                        "functionName": "workbook_prompt",
+                        "hasExternalApprover": false,
+                        "id": "6",
+                        "message": "Enter the ID of the workbook you want to copy to Mission Control.",
+                        "parameters": [],
+                        "responseTime": 30,
+                        "responses": [
+                            {
+                                "required": true,
+                                "responseOptions": [
+                                    1,
+                                    100
+                                ],
+                                "responsePrompt": "Workbook ID",
+                                "responseType": "range"
+                            }
+                        ],
+                        "samlEnabled": false,
+                        "samlGroupsAllowed": [],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 150,
+                    "y": 150
+                },
+                "7": {
+                    "data": {
+                        "action": "get data",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Retrieve Workbook Details",
+                            "customNameId": 0,
+                            "description": "GET request to retrieve the workbook name and description.",
+                            "join": [],
+                            "note": "GET request to retrieve the workbook name and description."
+                        },
+                        "connector": "HTTP",
+                        "connectorConfigs": [
+                            "soar_local"
+                        ],
+                        "connectorId": "290b7499-0374-4930-9cdc-5e9b05d65827",
+                        "connectorVersion": "v1",
+                        "functionId": 2,
+                        "functionName": "retrieve_workbook_details",
+                        "id": "7",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "location": {
+                                "functionId": 2,
+                                "parameters": [
+                                    "workbook_prompt:action_result.summary.responses.0"
+                                ],
+                                "template": "rest/workbook_template/{0}"
+                            }
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "location"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 150,
+                    "y": 342
+                },
+                "8": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Decision 1",
+                            "customNameId": 0,
+                            "delimiter": ",",
+                            "delimiter_enabled": true,
+                            "description": "Check to see if request is successful.",
+                            "join": [],
+                            "note": "Check to see if request is successful."
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "retrieve_workbook_details:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Success",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Failed",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "decision_1",
+                        "id": "8",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "8",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 230,
+                    "y": 534
+                },
+                "9": {
+                    "data": {
+                        "action": "get data",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Retrieve Workbook Phases",
+                            "customNameId": 0,
+                            "description": "GET request to retrieve the workbook phases.",
+                            "join": [],
+                            "note": "GET request to retrieve the workbook phases."
+                        },
+                        "connector": "HTTP",
+                        "connectorConfigs": [
+                            "soar_local"
+                        ],
+                        "connectorId": "290b7499-0374-4930-9cdc-5e9b05d65827",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "retrieve_workbook_phases",
+                        "id": "9",
+                        "loop": {
+                            "enabled": false,
+                            "exitAfterUnit": "m",
+                            "exitAfterValue": 10,
+                            "exitConditionEnabled": false,
+                            "exitLoopAfter": 2,
+                            "pauseUnit": "m",
+                            "pauseValue": 2
+                        },
+                        "parameters": {
+                            "location": {
+                                "functionId": 1,
+                                "parameters": [
+                                    "workbook_prompt:action_result.summary.responses.0"
+                                ],
+                                "template": "rest/workbook_phase_template?_filter_template_id={0}"
+                            }
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "location"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "9",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 240,
+                    "y": 714
+                }
+            },
+            "notes": "Prerequisites:\n-Provision an HTTP asset to create POST requests to Mission Control.\n-Provision an HTTP asset to perform GET request to SOAR."
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.15",
+        "version": "6.3.1.176"
+    },
+    "create_time": "2025-01-22T19:58:15.156343+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}
